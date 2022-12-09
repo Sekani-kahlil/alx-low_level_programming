@@ -1,10 +1,9 @@
 #include <stdio.h>
-
 #include <unistd.h>
 
 /**
- * main - Prints out the last part of a quote in the standard error.
- * Return: Always 0 (`success)
+ * main - prints exactly and that piece of art is useful.
+ * Return: Always 0 (success)
  */
 
 int main(void)
