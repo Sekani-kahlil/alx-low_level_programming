@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
- * main - Entry point
+ * main - main block
  * Return: Always 0
  */
 int main(void)
@@ -12,3 +12,4 @@ int main(void)
 	printf("Size of float: %lu byte(s)\n", sizeof(float));
 	return (0);
 } 
+
