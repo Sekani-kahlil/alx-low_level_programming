@@ -3,9 +3,9 @@
 
 /**
  *print_to_98 - count all natural numbers to 98
+ *
  *@n: check from this number
  */
-
 void print_to_98(int n)
 {
 	if (n <= 98)
@@ -37,6 +37,7 @@ void print_to_98(int n)
 	else
 	{
 	printf("%d, ", n);
+	}
 	}
 	}
 }
