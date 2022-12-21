@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- *_strncat -concatenates two string using an inputed number of bytes
- * @dest: copying to
- * @src: copying from
- * @n: The number of bytes to be copied to @dest.
+ *_strncat - concatenates two strings with n bytes
+ *@dest: copy to
+ *@src: copy from
+ *@n: number of character to be copied
  *
- * Return: @dest.
+ *Return: dest
  */
 
 char *_strncat(char *dest, char *src, int n)
@@ -28,4 +28,4 @@ char *_strncat(char *dest, char *src, int n)
 	}
 	dest[i] = '\0';
 	return (dest);
-
+}
