@@ -4,8 +4,8 @@
 
 /**
  * free_grid - a function that frees a 2 dimensional grid
- * @grid : array 
- * @height : int 
+ * @grid : array
+ * @height : int
  *
  * Return: 0
  */
