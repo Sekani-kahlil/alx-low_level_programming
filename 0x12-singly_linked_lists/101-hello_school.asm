@@ -5,17 +5,16 @@ msg:	db "Hello, Holberton", 0
 fmt:	db "%s", 10, 0
 
 section .text
-	extern printf
-	global main
+global main
 main:
 	push pbp
 
-	mov esi, msg
-	mov edi, fmt
-	mov eax, 0
+	mov rsi, msg
+	mov rdi, fmt
+	mov rax, 0
 	call printf
 
 	pop pbp
 
-	mov eax, 0
+	mov rax, 0
 	ret
