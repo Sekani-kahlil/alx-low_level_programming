@@ -1,72 +1,52 @@
 #include "lists.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * free_listp2 - frees a linked list
- * @head: head of a list.
+ * free_listint_safe - function that frees a listint_t list.
+ * @h: pointer to pointer to the head of linked list.
  *
- * Return: no return.
- */
-void free_listp2(listp_t **head)
-{
-	listp_t *temp;
-	listp_t *curr;
-
-	if (head != NULL)
-	{
-		curr = *head;
-		while ((temp = curr) != NULL)
-		{
-			curr = curr->next;
-			free(temp);
-		}
-		*head = NULL;
-	}
-}
-
-/**
- * free_listint_safe - frees a linked list.
- * @h: head of a list.
+ * This function can free lists with a loop.
+ * You should go through the list only once.
+ * The function sets the head to NULL.
  *
- * Return: size of the list that was freed.
+ * Return: the size of the list that was free’d. Otherwise 0.
  */
+
 size_t free_listint_safe(listint_t **h)
 {
-	size_t nnodes = 0;
-	listp_t *hptr, *new, *add;
-	listint_t *curr;
+	listint_t *current;
+	listnode_t *nodes = NULL; /* stores address of nodes */
+	size_t count = 0;
 
-	hptr = NULL;
-	while (*h != NULL)
+	if (h == NULL)
+		return (0);
+
+	/* while you have not encountered a loop */
+	while (!is_in_nodes(nodes, *h))
 	{
-		new = malloc(sizeof(listp_t));
-
-		if (new == NULL)
-			exit(98);
-
-		new->p = (void *)*h;
-		new->next = hptr;
-		hptr = new;
-
-		add = hptr;
-
-		while (add->next != NULL)
+		/* check if the malloc fails then exit */
+		if (!add_nodeptr(&nodes, *h))
 		{
-			add = add->next;
-			if (*h == add->p)
-			{
-				*h = NULL;
-				free_listp2(&hptr);
-				return (nnodes);
-			}
+			free_listnode(nodes);
+			exit(98);
 		}
-
-		curr = *h;
+		current = *h;
 		*h = (*h)->next;
-		free(curr);
-		nnodes++;
+		free(current);
+		/* print address of current node and the value of field n */
+		/* cast it a void pointer in order to print the address */
+		/* printf("[%p] %d\n", (void *)head, head->n); */
+		/* count the nodes */
+		count++;
 	}
+	/* if you encounter a loop */
+	if (*h != NULL)
+		*h = NULL;
 
-	*h = NULL;
-	free_listp2(&hptr);
-	return (nnodes);
+	/* print where the loop starts */
+	/*	printf("-> [%p] %d\n", (void *)head, head->n); */
+	free_listnode(nodes);
+	/* return number of nodes */
+	return (count);
 }
